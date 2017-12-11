@@ -1,0 +1,14 @@
+/.yardoc/
+.bundle/
+log/*.log
+pkg/
+
+# Ignore HTML-Reports
+test/html_reports/*
+
+# Ignore Robocop Output / Todo
+/.rubocop_todo.yml
+/rubocop/
+
+# Ignore Rubycritic output
+/rubycritic/
