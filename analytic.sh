@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Konfiguration
+RC_PATH=/gem/rubycritic
+LIB_NAME=rene_majewski
+RC_LIB_PATH=$RC_PATH/lib/$LIB_NAME/ruby_checks
+LIB_PATH=lib/$LIB_NAME
+
+
 # HTML-Daten ersetzen
 # $1  HTML-Datei, die geändert werden soll
 # $2  Such-Term
@@ -26,22 +33,22 @@ export LC_ALL=C.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
-rubycritic -p /gem/rubycritic -f html --no-browser /gem/lib
+rubycritic -p $RC_PATH -f html --no-browser /gem/lib
 
 export LC_ALL=$OLD_LC_ALL
 export LANG=$OLD_LANG
 export LANGUAGE=$OLD_LANGUAGE
 
 # HTML-Dateien zusammenfassen
-mkdir -p rubycritic/lib/rlx_google_api
-mv lib/*.html rubycritic/lib
-mv lib/rlx_google_api/*.html rubycritic/lib/rlx_google_api
+mkdir -p $RC_LIB_PATH
+mv lib/*.html $RC_PATH/lib
+mv $LIB_PATH/ruby_checks/*.html $RC_LIB_PATH
 
 # HTML-Dateien anpassen
-change_html rubycritic/code_index.html "href=\\\"..\/" "href=\\\""
-change_html rubycritic/smells_index.html "href=\\\"..\/" "href=\\\""
+change_html $RC_PATH/code_index.html "href=\\\"..\/" "href=\\\""
+change_html $RC_PATH/smells_index.html "href=\\\"..\/" "href=\\\""
 
-for file in `find rubycritic/lib -type f -name '*.html'`
+for file in `find $RC_PATH/lib -type f -name '*.html'`
 do
   change_html $file "..\/rubycritic\/" "..\/"
 done

@@ -1,5 +1,6 @@
 module ReneMajewski
   module RubyChecks
+    # This class provides the default messages for the errors.
     class StandardMessages
       class << self
       end # class << self
