@@ -1,0 +1,270 @@
+#inherit_from:
+#  - .rubocop_todo.yml
+#  - .haml-lint_todo.yml
+
+# Common configuration.
+AllCops:
+  # Include common Ruby source files.
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+    - '**/scripts/*'
+    - '**/*.builder'
+    - '**/*.fcgi'
+    - '**/*.gemspec'
+    - '**/*.god'
+    - '**/*.jb'
+    - '**/*.jbuilder'
+    - '**/*.mspec'
+    - '**/*.opal'
+    - '**/*.pluginspec'
+    - '**/*.podspec'
+    - '**/*.rabl'
+    - '**/*.rake'
+    - '**/*.rb'
+    - '**/*.rbuild'
+    - '**/*.rbw'
+    - '**/*.rbx'
+    - '**/*.ru'
+    - '**/*.ruby'
+    - '**/*.spec'
+    - '**/*.thor'
+    - '**/*.watchr'
+    - '**/.irbrc'
+    - '**/.pryrc'
+    - '**/buildfile'
+    - '**/config.ru'
+    - '**/Appraisals'
+    - '**/Berksfile'
+    - '**/Brewfile'
+    - '**/Buildfile'
+    - '**/Capfile'
+    - '**/Cheffile'
+    - '**/Dangerfile'
+    - '**/Deliverfile'
+    - '**/Fastfile'
+    - '**/*Fastfile'
+    - '**/Gemfile'
+    - '**/Guardfile'
+    - '**/Jarfile'
+    - '**/Mavenfile'
+    - '**/Podfile'
+    - '**/Puppetfile'
+    - '**/Rakefile'
+    - '**/Snapfile'
+    - '**/Thorfile'
+    - '**/Vagabondfile'
+    - '**/Vagrantfile'
+  Exclude:
+    - '**/test/*'
+    - '**/test/**/*'
+    - 'coverage/*'
+    - 'doc/*'
+    - 'fixtures/*'
+    - 'pkg/*'
+    - 'cache/**/*'
+  # Default formatter will be used if no `-f/--format` option is given.
+  DefaultFormatter: progress
+  # Cop names are displayed in offense messages by default. Change behavior
+  # by overriding DisplayCopNames, or by giving the `--no-display-cop-names`
+  # option.
+  DisplayCopNames: true
+  # Style guide URLs are not displayed in offense messages by default. Change
+  # behavior by overriding `DisplayStyleGuide`, or by giving the
+  # `-S/--display-style-guide` option.
+  DisplayStyleGuide: false
+  # When specifying style guide URLs, any paths and/or fragments will be
+  # evaluated relative to the base URL.
+  StyleGuideBaseURL: https://github.com/bbatsov/ruby-style-guide
+  # Extra details are not displayed in offense messages by default. Change
+  # behavior by overriding ExtraDetails, or by giving the
+  # `-E/--extra-details` option.
+  ExtraDetails: true
+  # Additional cops that do not reference a style guide rule may be enabled by
+  # default. Change behavior by overriding `StyleGuideCopsOnly`, or by giving
+  # the `--only-guide-cops` option.
+  StyleGuideCopsOnly: false
+  # All cops except the ones in disabled.yml are enabled by default. Change
+  # this behavior by overriding either `DisabledByDefault` or `EnabledByDefault`.
+  # When `DisabledByDefault` is `true`, all cops in the default configuration
+  # are disabled, and only cops in user configuration are enabled. This makes
+  # cops opt-in instead of opt-out. Note that when `DisabledByDefault` is `true`,
+  # cops in user configuration will be enabled even if they don't set the
+  # Enabled parameter.
+  # When `EnabledByDefault` is `true`, all cops, even those in disabled.yml,
+  # are enabled by default.  Cops can still be disabled in user configuration.
+  # Note that it is invalid to set both EnabledByDefault and DisabledByDefault
+  # to true in the same configuration.
+  EnabledByDefault: true
+  DisabledByDefault: false
+  # Enables the result cache if `true`. Can be overridden by the `--cache` command
+  # line option.
+  UseCache: true
+  # Threshold for how many files can be stored in the result cache before some
+  # of the files are automatically removed.
+  MaxFilesInCache: 20000
+  # The cache will be stored in "rubocop_cache" under this directory. If
+  # CacheRootDirectory is ~ (nil), which it is by default, the root will be
+  # taken from the environment variable `$XDG_CACHE_HOME` if it is set, or if
+  # `$XDG_CACHE_HOME` is not set, it will be `$HOME/.cache/`.
+  CacheRootDirectory: /gem/cache/robocop
+  # It is possible for a malicious user to know the location of RuboCop's cache
+  # directory by looking at CacheRootDirectory, and create a symlink in its
+  # place that could cause RuboCop to overwrite unintended files, or read
+  # malicious input. If you are certain that your cache location is secure from
+  # this kind of attack, and wish to use a symlinked cache location, set this
+  # value to "true".
+  AllowSymlinksInCacheRootDirectory: false
+  # What MRI version of the Ruby interpreter is the inspected code intended to
+  # run on? (If there is more than one, set this to the lowest version.)
+  # If a value is specified for TargetRubyVersion then it is used.
+  # Else if .ruby-version exists and it contains an MRI version it is used.
+  # Otherwise we fallback to the oldest officially supported Ruby version (2.1).
+  TargetRubyVersion: ~
+  TargetRailsVersion: 5.0
+
+# ===== Changed Cops Configuration =====
+
+Style/Copyright:
+  Enabled: false
+
+Style/MethodCallWithArgsParentheses:
+  StyleGuide: '#method-invocation-parens'
+  Enabled: true
+  IgnoredMethods: [
+    'source', 
+    'require', 
+    'raise', 
+    'is_a?', 
+    'add_development_dependency',
+    'add_dependency',
+    'puts',
+    'task'
+  ]
+
+Style/MissingElse:
+  Enabled: true
+  EnforcedStyle: case
+
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19_no_mixed_keys
+
+Style/Encoding:
+  Enabled: true
+  Exclude:
+    - rlx_google_api.gemspec
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - rlx_google_api.gemspec
+
+Style/RedundantReturn:
+  Enabled: false
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/InlineComment:
+  Enabled: false
+
+Naming/MethodName:
+  Enabled: true
+  EnforcedStyle: camelCase
+
+Naming/VariableName:
+  Enabled: true
+  EnforcedStyle: camelCase
+
+Layout/IndentArray:
+  Enabled: true
+  EnforcedStyle: consistent
+
+# ===== Disabled Cops in standard configuration =====
+Layout/FirstArrayElementLineBreak:
+  Description: >-
+                 Checks for a line break before the first element in a
+                 multi-line array.
+  Enabled: true
+
+Layout/FirstHashElementLineBreak:
+  Description: >-
+                 Checks for a line break before the first element in a
+                 multi-line hash.
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
+  Description: >-
+                 Checks for a line break before the first argument in a
+                 multi-line method call.
+  Enabled: true
+
+Layout/FirstMethodParameterLineBreak:
+  Description: >-
+                 Checks for a line break before the first parameter in a
+                 multi-line method parameter definition.
+  Enabled: true
+
+Layout/MultilineAssignmentLayout:
+  Description: 'Check for a newline after the assignment operator in multi-line assignments.'
+  StyleGuide: '#indent-conditional-assignment'
+  Enabled: true
+
+# By default, the rails cops are not run. Override in project or home
+# directory .rubocop.yml files, or by giving the -R/--rails option.
+Rails:
+  Enabled: true
+
+Rails/SaveBang:
+  Description: 'Identifies possible cases where Active Record save! or related should be used.'
+  StyleGuide: 'https://github.com/bbatsov/rails-style-guide#save-bang'
+  Enabled: true
+
+Style/AutoResourceCleanup:
+  Description: 'Suggests the usage of an auto resource cleanup version of a method (if available).'
+  Enabled: true
+
+Style/CollectionMethods:
+  Description: 'Preferred collection methods.'
+  StyleGuide: '#map-find-select-reduce-size'
+  Enabled: true
+
+Style/DocumentationMethod:
+  Description: 'Public methods.'
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+
+Style/ImplicitRuntimeError:
+  Description: >-
+                 Use `raise` or `fail` with an explicit exception class and
+                 message, rather than just a message.
+  Enabled: true
+
+Style/MethodCalledOnDoEndBlock:
+  Description: 'Avoid chaining a method call on a do...end block.'
+  StyleGuide: '#single-line-blocks'
+  Enabled: true
+
+Style/OptionHash:
+  Description: "Don't use option hashes when you can use keyword arguments."
+  Enabled: true
+
+Style/ReturnNil:
+  Description: 'Use return instead of return nil.'
+  Enabled: true
+
+Style/Send:
+  Description: 'Prefer `Object#__send__` or `Object#public_send` to `send`, as `send` may overlap with existing methods.'
+  StyleGuide: '#prefer-public-send'
+  Enabled: true
+
+Style/SingleLineBlockParams:
+  Description: 'Enforces the names of some block params.'
+  Enabled: true
+
+Style/StringMethods:
+  Description: 'Checks if configured preferred methods are used over non-preferred.'
+  Enabled: true

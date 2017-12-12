@@ -2,9 +2,12 @@
 .bundle/
 log/*.log
 pkg/
+/cache/
+/coverage/
+/doc/
 
 # Ignore HTML-Reports
-test/html_reports/*
+test/html_reports/
 
 # Ignore Robocop Output / Todo
 /.rubocop_todo.yml

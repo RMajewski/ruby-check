@@ -1,5 +1,7 @@
-require 'rm-ruby-checks/version'
+require 'rene_majewski/ruby_checks/version'
 
 # This module implements functions to perform checks.
-module ReneMajewski::RubyChecks
+module ReneMajewski
+  module RubyChecks
+  end
 end
