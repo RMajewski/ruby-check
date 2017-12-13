@@ -33,6 +33,11 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not a string.
       def isString(message = "")
+        return true if @obj.is_a?(String)
+
+        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoString)
+        raise ArgumentError, @message if @raiseError
+        return false
       end # def isString (message)
 
       # Tests if the `obj` is an array.
@@ -54,6 +59,11 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not a string.
       def isInteger(message = "")
+        return true if @obj.is_a?(Integer)
+
+        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoInteger)
+        raise ArgumentError, @message if @raiseError
+        return false
       end # def isInteger (message)
 
       # Tests if the `obj` is `nil`.
