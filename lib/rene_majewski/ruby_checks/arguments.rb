@@ -60,6 +60,11 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not `nil`
       def isNil(message = "")
+        return true if !@obj
+
+        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageIsNil)
+        raise ArgumentError, @message if @raiseError
+        return false
       end # def isEmpty (message)
 
       # Test if the `obj` is not `nil`.
@@ -68,6 +73,11 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is `nil`.
       def isNotNil(message = "")
+        return true if @obj
+
+        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoNil)
+        raise ArgumentError, @message if @raiseError
+        return false
       end # def isNotNil (message)
 
       # Test if the `obj` is empty.
@@ -76,6 +86,11 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not empty.
       def isEmpty(message = "")
+        return true if @obj.empty?
+
+        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoEmpty)
+        raise ArgumentError, @message if @raiseError
+        return false
       end # def isEmpty (message)
 
       # Test if the `obj` is not empty.
@@ -84,6 +99,11 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is empty.
       def isNotEmpty(message = "")
+        return true if !@obj.empty?
+
+        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageIsEmpty)
+        raise ArgumentError, @message if @raiseError
+        return false
       end # def isNotEmpty (message)
 
     private

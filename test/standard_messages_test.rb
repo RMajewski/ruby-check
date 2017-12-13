@@ -23,4 +23,24 @@ class StandardMessagesTest < Minitest::Test
     assert_equal "The test object is not an object.",
       ::ReneMajewski::RubyChecks::StandardMessages.messageNoObject
   end
+
+  def test_right_error_message_for_no_nil()
+    assert_equal "The test object is not nil.",
+      ::ReneMajewski::RubyChecks::StandardMessages.messageNoNil
+  end
+
+  def test_right_error_message_for_is_nil()
+    assert_equal "The test object is nil.",
+      ::ReneMajewski::RubyChecks::StandardMessages.messageIsNil
+  end
+
+  def test_right_error_message_for_no_empty()
+    assert_equal "The test object is not empty.",
+      ::ReneMajewski::RubyChecks::StandardMessages.messageNoEmpty
+  end
+
+  def test_right_error_message_for_is_empty()
+    assert_equal "The test object is empty.",
+      ::ReneMajewski::RubyChecks::StandardMessages.messageIsEmpty
+  end
 end
