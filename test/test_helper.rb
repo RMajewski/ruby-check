@@ -14,5 +14,5 @@ require 'rm-ruby-checks'
 require 'minitest/autorun'
 require 'minitest/reporters'
 
-Minitest::Reporters.use! [Minitest::Reporters::HtmlReporter.new, Minitest::Reporters::DefaultReporter.new]
+Minitest::Reporters.use! [Minitest::Reporters::HtmlReporter.new, Minitest::Reporters::DefaultReporter.new(:color => true)]
 
