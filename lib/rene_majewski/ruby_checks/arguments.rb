@@ -33,11 +33,7 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not a string.
       def isString(message = "")
-        return true if @obj.is_a?(String)
-
-        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoString)
-        raise ArgumentError, @message if @raiseError
-        return false
+        return isA(String, message, ReneMajewski::RubyChecks::StandardMessages.messageNoString)
       end # def isString (message)
 
       # Tests if the `obj` is an array.
@@ -46,11 +42,7 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not an array.
       def isArray(message = "")
-        return true if @obj.is_a?(Array)
-
-        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoArray)
-        raise ArgumentError, @message if @raiseError
-        return false
+        return isA(Array, message, ReneMajewski::RubyChecks::StandardMessages.messageNoArray)
       end # def isArray (message)
 
       # Tests if the `obj` is an integer.
@@ -59,11 +51,7 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not a string.
       def isInteger(message = "")
-        return true if @obj.is_a?(Integer)
-
-        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoInteger)
-        raise ArgumentError, @message if @raiseError
-        return false
+        return isA(Integer, message, ReneMajewski::RubyChecks::StandardMessages.messageNoInteger)
       end # def isInteger (message)
 
       # Tests if the `obj` is `nil`.
@@ -112,6 +100,27 @@ module ReneMajewski
         @message = message if message
         @message = standard
       end # getMessage(message)
+
+      # Test the `obj` is not the object in `classes`.
+      #
+      # @param classes [Object] The test class.
+      #
+      # @param message [String] The alternate message for negative test.
+      #
+      # @param standard [String] The standard message for negative test.
+      #
+      # @return [true] If the `obj` a `classes`.
+      #
+      # @return [false] If the `obj` not a `classes`.
+      #
+      # @raise [ArgumentError] If the the test negative.
+      def isA(classes, message, standard)
+        return true if @obj.is_a?(classes)
+
+        setMessage(message, standard)
+        raise ArgumentError, @message if @raiseError
+        return false
+      end # isA
     end # class Arguments
   end # module RubyChecks
 end # module ReneMajewski
