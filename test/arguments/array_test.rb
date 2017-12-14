@@ -29,13 +29,13 @@ module Arguments
       assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoArray(), @arguments.message
     end
 
-    def test_false_With_no_array_as_object_and_no_raised_error_and_object_name
+    def test_false_with_no_array_as_object_and_no_raised_error_and_object_name
       @test = testInteger
       @objName = testObjectName
-      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test,@objName, false)
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, @objName, false)
 
       assert_equal false, @arguments.isArray()
-      assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoArray(objName),
+      assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoArray(@objName),
        @arguments.message 
     end
   end

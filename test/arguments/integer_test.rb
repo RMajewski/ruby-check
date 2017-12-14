@@ -23,10 +23,20 @@ module Arguments
 
     def test_false_with_no_integer_as_object_and_no_raised_error()
       @test = testArray
-      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, false)
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, "", false)
 
       assert_equal false, @arguments.isInteger()
       assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoInteger(), @arguments.message
+    end
+
+    def test_false_with_no_integer_as_object_and_no_raised_error_and_object_name
+      @test = testArray
+      @objName = testObjectName
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, @objName, false)
+
+      assert_equal false, @arguments.isInteger()
+      assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoInteger(@objName),
+       @arguments.message 
     end
   end
 end

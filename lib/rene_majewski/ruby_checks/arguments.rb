@@ -49,7 +49,13 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not a string.
       def isString(message = "")
-        return isA(String, message, ReneMajewski::RubyChecks::StandardMessages.messageNoString)
+        return isA(
+          String,
+          message,
+          ReneMajewski::RubyChecks::StandardMessages.messageNoString(
+            @objectName 
+          )
+        )
       end # def isString (message)
 
       # Tests if the `obj` is an array.
@@ -58,7 +64,13 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not an array.
       def isArray(message = "")
-        return isA(Array, message, ReneMajewski::RubyChecks::StandardMessages.messageNoArray)
+        return isA(
+          Array,
+          message,
+          ReneMajewski::RubyChecks::StandardMessages.messageNoArray(
+            @objectName 
+          )
+        )
       end # def isArray (message)
 
       # Tests if the `obj` is an integer.
@@ -67,7 +79,13 @@ module ReneMajewski
       #
       # @raise [ArgumentError] Is generated if the `obj` is not a string.
       def isInteger(message = "")
-        return isA(Integer, message, ReneMajewski::RubyChecks::StandardMessages.messageNoInteger)
+        return isA(
+          Integer,
+          message,
+          ReneMajewski::RubyChecks::StandardMessages.messageNoInteger(
+            @objectName 
+          )
+        )
       end # def isInteger (message)
 
       # Tests if the `obj` is `nil`.
@@ -78,7 +96,12 @@ module ReneMajewski
       def isNil(message = "")
         return true if !@obj
 
-        setMessageRaiseError(message, ReneMajewski::RubyChecks::StandardMessages.messageIsNil)
+        setMessageRaiseError(
+          message,
+          ReneMajewski::RubyChecks::StandardMessages.messageIsNil(
+            @objectName 
+          )
+        )
         return false
       end # def isEmpty (message)
 
@@ -90,7 +113,12 @@ module ReneMajewski
       def isNotNil(message = "")
         return true if @obj
 
-        setMessageRaiseError(message, ReneMajewski::RubyChecks::StandardMessages.messageNoNil)
+        setMessageRaiseError(
+          message,
+          ReneMajewski::RubyChecks::StandardMessages.messageNoNil(
+            @objectName 
+          )
+        )
         return false
       end # def isNotNil (message)
 
@@ -102,7 +130,12 @@ module ReneMajewski
       def isEmpty(message = "")
         return true if @obj.empty?
 
-        setMessageRaiseError(message, ReneMajewski::RubyChecks::StandardMessages.messageNoEmpty)
+        setMessageRaiseError(
+          message,
+          ReneMajewski::RubyChecks::StandardMessages.messageNoEmpty(
+            @objectName 
+          )
+        )
         return false
       end # def isEmpty (message)
 
@@ -114,7 +147,12 @@ module ReneMajewski
       def isNotEmpty(message = "")
         return true if !@obj.empty?
 
-        setMessageRaiseError(message, ReneMajewski::RubyChecks::StandardMessages.messageIsEmpty)
+        setMessageRaiseError(
+          message,
+          ReneMajewski::RubyChecks::StandardMessages.messageIsEmpty(
+            @objectName
+          )
+        )
         return false
       end # def isNotEmpty (message)
 

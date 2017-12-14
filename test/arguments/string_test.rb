@@ -23,10 +23,20 @@ module Arguments
 
     def test_false_with_no_array_as_string_and_no_raised_error()
       @test = testInteger
-      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, false)
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, "", false)
 
       assert_equal false, @arguments.isString()
       assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoString(), @arguments.message
+    end
+
+    def test_false_with_no_string_as_object_and_no_raised_error_and_object_name
+      @test = testInteger
+      @objName = testObjectName
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, @objName, false)
+
+      assert_equal false, @arguments.isString()
+      assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoString(@objName),
+       @arguments.message 
     end
   end
 end

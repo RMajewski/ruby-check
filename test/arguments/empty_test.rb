@@ -23,10 +23,20 @@ module Arguments
 
     def test_false_with_no_empty_as_object_and_no_raised_error()
       @test = testString
-      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, false)
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, "", false)
 
       assert_equal false, @arguments.isEmpty()
       assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoEmpty(), @arguments.message
+    end
+
+    def test_false_with_no_array_as_object_and_no_raised_error_and_object_name
+      @test = testString
+      @objName = testObjectName
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, @objName, false)
+
+      assert_equal false, @arguments.isEmpty()
+      assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoEmpty(@objName),
+       @arguments.message 
     end
 
     def test_response_true_with_no_empty_as_object()
@@ -48,10 +58,20 @@ module Arguments
 
     def test_false_with_empty_as_object_and_no_raised_error()
       @test = ""
-      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, false)
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, "", false)
 
       assert_equal false, @arguments.isNotEmpty()
       assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageIsEmpty(), @arguments.message
+    end
+
+    def test_false_with_empty_as_object_and_no_raised_error_and_object_name
+      @test = ""
+      @objName = testObjectName
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, @objName, false)
+
+      assert_equal false, @arguments.isNotEmpty()
+      assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageIsEmpty(@objName),
+       @arguments.message 
     end
   end
 end

@@ -23,10 +23,20 @@ module Arguments
 
     def test_false_with_no_nil_as_object_and_no_raised_error()
       @test = testInteger
-      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, false)
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, "", false)
 
       assert_equal false, @arguments.isNil()
       assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageIsNil(), @arguments.message
+    end
+
+    def test_false_with_no_array_as_object_and_no_raised_error_and_object_name
+      @test = testInteger
+      @objName = testObjectName
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, @objName, false)
+
+      assert_equal false, @arguments.isNil()
+      assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageIsNil(@objName),
+       @arguments.message 
     end
 
     def test_response_true_with_no_nil_as_object()
@@ -48,10 +58,20 @@ module Arguments
 
     def test_false_with_nil_as_object_and_no_raised_error()
       @test = nil
-      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, false)
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, "", false)
 
       assert_equal false, @arguments.isNotNil()
       assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoNil(), @arguments.message
+    end
+
+    def test_false_with_nil_as_object_and_no_raised_error_and_object_name
+      @test = nil
+      @objName = testObjectName
+      @arguments = ::ReneMajewski::RubyChecks::Arguments.new(@test, @objName, false)
+
+      assert_equal false, @arguments.isNotNil()
+      assert_equal ::ReneMajewski::RubyChecks::StandardMessages.messageNoNil(@objName),
+       @arguments.message 
     end
   end
 end
