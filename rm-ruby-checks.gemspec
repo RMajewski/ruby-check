@@ -6,14 +6,15 @@ require 'rene_majewski/ruby_checks/version'
 
 Gem::Specification.new do |spec|
   spec.platform = Gem::Platform::RUBY
-  spec.name = 'rlx_google_api'
+  spec.name = 'rm-ruby-checks'
   spec.version = ReneMajewski::RubyChecks::VERSION
   spec.authors = ['René Majewski']
   spec.email = ['rene.majewski@gmx.de']
+  spec.licenses = 'EUPL-1.1'
 
-  spec.summary = 'Zugriff auf die Google API mit einen Service-Account.'
-  spec.description = 'Zugriff auf die Google API mit einen Service-Account.'
-  spec.homepage = ''
+  spec.summary = 'Test Arguments in Methods.'
+  spec.description = 'Tests arguments in methods for correctness. In addition, some assertions for Minitest are provided.'
+  spec.homepage = 'https://github.com/RMajewski/ruby-checks'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the
   # 'allowed_push_host' to allow pushing to a single host or delete this section
@@ -37,7 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.12'
   spec.add_development_dependency 'haml-lint', '~> 0.999.999'
   spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'minitest-autotest'
+  spec.add_development_dependency 'minitest-autotest', '~> 1.0', '>= 1.0.3'
   spec.add_development_dependency 'minitest-reporters', '~> 1.1', '>= 1.1.18'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rubocop', '~> 0.51.0'
