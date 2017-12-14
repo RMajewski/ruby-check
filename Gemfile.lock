@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rlx_google_api (0.1.0)
+    rm-ruby-checks (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -117,10 +117,10 @@ DEPENDENCIES
   bundler (~> 1.12)
   haml-lint (~> 0.999.999)
   minitest (~> 5.0)
-  minitest-autotest
+  minitest-autotest (~> 1.0, >= 1.0.3)
   minitest-reporters (~> 1.1, >= 1.1.18)
   rake (~> 10.0)
-  rlx_google_api!
+  rm-ruby-checks!
   rubocop (~> 0.51.0)
   rubycritic (~> 3.3)
   simplecov (~> 0.15.1)
