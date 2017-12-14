@@ -14,18 +14,34 @@ module ReneMajewski
       # Saves the error message.
       attr_reader :message
 
+      # Saves the name of the object to be tested.
+      attr_reader :objectName
+
       # Initialize this class for a argument to test.
       #
       # @param obj [Object] Object to be tested.
       #
+      # @param objName [String] The name of the object to be tested.
+      #
       # @param raiseError [Boolean] Indicates whether an error should be raised.
       #   If `true`, the error should be raised. If `false`, the error should be
       #   not raise.
-      def initialize(obj, raiseError = true)
+      def initialize(obj, objName = "", raiseError = true)
         @obj = obj
+        @objectName = objName
         @raiseError = raiseError
         @message = ""
       end # initailize
+
+      # Saves whether or not an error should be triggered if a validation is
+      # false.
+      #
+      # @param raiseError [Boolean] Indicates whether an error should be raised.
+      #   If `true`, the error should be raised. If `false`, the error should be
+      #   not raise.
+      def setRaiseError(raiseError)
+        @raiseError = raiseError
+      end # setRaiseError (raiseError)
 
       # Tests if the `obj` is a string.
       #
@@ -62,8 +78,7 @@ module ReneMajewski
       def isNil(message = "")
         return true if !@obj
 
-        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageIsNil)
-        raise ArgumentError, @message if @raiseError
+        setMessageRaiseError(message, ReneMajewski::RubyChecks::StandardMessages.messageIsNil)
         return false
       end # def isEmpty (message)
 
@@ -75,8 +90,7 @@ module ReneMajewski
       def isNotNil(message = "")
         return true if @obj
 
-        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoNil)
-        raise ArgumentError, @message if @raiseError
+        setMessageRaiseError(message, ReneMajewski::RubyChecks::StandardMessages.messageNoNil)
         return false
       end # def isNotNil (message)
 
@@ -88,8 +102,7 @@ module ReneMajewski
       def isEmpty(message = "")
         return true if @obj.empty?
 
-        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageNoEmpty)
-        raise ArgumentError, @message if @raiseError
+        setMessageRaiseError(message, ReneMajewski::RubyChecks::StandardMessages.messageNoEmpty)
         return false
       end # def isEmpty (message)
 
@@ -101,13 +114,12 @@ module ReneMajewski
       def isNotEmpty(message = "")
         return true if !@obj.empty?
 
-        setMessage(message, ReneMajewski::RubyChecks::StandardMessages.messageIsEmpty)
-        raise ArgumentError, @message if @raiseError
+        setMessageRaiseError(message, ReneMajewski::RubyChecks::StandardMessages.messageIsEmpty)
         return false
       end # def isNotEmpty (message)
 
     private
-      # Set the message.
+      # Set the message and raised a error.
       #
       # Is the message is set, use message as message.
       #
@@ -116,9 +128,11 @@ module ReneMajewski
       # @param message [String] The alternate message.
       #
       # @param standard [String] The standard message.
-      def setMessage(message, standard)
+      def setMessageRaiseError(message, standard)
         @message = message if message
         @message = standard
+
+        raise ArgumentError, @message if @raiseError
       end # getMessage(message)
 
       # Test the `obj` is not the object in `classes`.
@@ -137,10 +151,9 @@ module ReneMajewski
       def isA(classes, message, standard)
         return true if @obj.is_a?(classes)
 
-        setMessage(message, standard)
-        raise ArgumentError, @message if @raiseError
+        setMessageRaiseError(message, standard)
         return false
-      end # isA
+      end # isA (classes, message, standard)
     end # class Arguments
   end # module RubyChecks
 end # module ReneMajewski

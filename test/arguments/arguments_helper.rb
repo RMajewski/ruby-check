@@ -17,5 +17,9 @@ module Arguments
     def testObject()
       return Object.new
     end
+
+    def testObjectName()
+      return "Test object"
+    end
   end
 end
