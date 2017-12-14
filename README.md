@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install rlx-pdqc-gem
+$ gem install rm-ruby-checks
 ```
 
 ## Contributing
