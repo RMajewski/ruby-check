@@ -5,6 +5,7 @@ pkg/
 /cache/
 /coverage/
 /doc/
+*.gem
 
 # Ignore HTML-Reports
 test/html_reports/
